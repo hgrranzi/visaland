@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div th:if="${loggedInMessage != null}" class="content">
+    <h1 th:text="${loggedInMessage}"></h1>
+    <a class="link" href="#" th:href="${homePageUrl}">Home page</a><br>
+    <a class="link" href="#" th:href="@{/logout}">Logout</a>
+</div>
+<div th:if="${loggedInMessage == null}" class="content">
+    <h1>Please enter username and password</h1>
+    <form action="/login" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+    <br>
+    <a href="/register">Register as applicant</a>
+</div>
+<footer class="footer">
+    © 2023 Some nice footer.
+</footer>
+</body>
+</html>

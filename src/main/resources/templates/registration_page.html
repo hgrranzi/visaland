@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<div class="content">
+    <h1>Register new applicant</h1>
+
+    <form th:action="@{/register}" method="post" th:object="${applicantDto}">
+        <label>Username:</label>
+        <label>
+            <input type="text" th:field="*{username}" required>
+            <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+        </label>
+        <br>
+        <label>Email:</label>
+        <label>
+            <input type="email" th:field="*{email}" required>
+            <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        </label>
+        <br>
+        <label>Password:</label>
+        <label>
+            <input type="password" th:field="*{password}" required>
+            <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        </label>
+        <br>
+        <label>First name:</label>
+        <label>
+            <input type="text" th:field="*{firstName}" required>
+            <span class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+        </label>
+        <br>
+        <label>Last name:</label>
+        <label>
+            <input type="text" th:field="*{lastName}" required>
+            <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+        </label>
+        <br>
+        <label>Date of birth:</label>
+        <label>
+            <input type="date" th:field="*{dateOfBirth}" required>
+            <span class="error" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></span>
+        </label>
+        <br>
+        <label>Passport number:</label>
+        <label>
+            <input type="text" th:field="*{passportNumber}" required>
+            <span class="error" th:if="${#fields.hasErrors('passportNumber')}" th:errors="*{passportNumber}"></span>
+        </label>
+        <br>
+        <label>Phone number:</label>
+        <label>
+            <input type="text" th:field="*{phone}">
+            <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+        </label>
+        <br>
+        <label>Profession:</label>
+        <label>
+            <input type="text" th:field="*{profession}">
+            <span class="error" th:if="${#fields.hasErrors('profession')}" th:errors="*{profession}"></span>
+        </label>
+        <br>
+        <button type="submit">Register</button>
+    </form>
+    <a class="link" href="#" th:href="@{/login}">I have an account</a>
+</div>
+<footer class="footer">
+    © 2023 Some nice footer.
+</footer>
+</body>
+</html>

@@ -1,9 +1,7 @@
 package com.hgrranzi.visaland.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -12,6 +10,9 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Applicant {
 
     @Id
@@ -28,14 +29,8 @@ public class Applicant {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "middle_name")
-    private String middleName;
-
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
-
-    @Column(name = "nationality", nullable = false)
-    private String nationality;
 
     @Column(name = "passport_number", nullable = false, unique = true)
     private String passportNumber;
@@ -45,8 +40,5 @@ public class Applicant {
 
     @Column(name = "profession")
     private String profession;
-
-    @Column(name = "city", nullable = false)
-    private String city;
 
 }

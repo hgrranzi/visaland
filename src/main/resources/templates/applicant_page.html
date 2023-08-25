@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta charset="UTF-8">
+    <title>Applicant Page</title>
+</head>
+<body>
+<div class="content">
+    <h1>Visaland Online</h1>
+
+    <p><b><span th:text="${applicant.username}"></span> </b></p>
+
+    <div class="buttons-container">
+        <form method="get" th:action="@{/applicant/select}">
+            <button type="submit" class="button">Apply for a visa</button>
+        </form>
+        <form method="get" th:action="@{/applicant/applications}">
+            <button type="submit" class="button">My applications</button>
+        </form>
+        <form method="get" th:action="@{applicant/visas}">
+            <button type="submit" class="button">My visas</button>
+        </form>
+    </div>
+
+    <h2>Personal Information</h2>
+    <ul>
+        <li>Name: <span th:text="${applicant.firstName}"></span> <span th:text="${applicant.lastName}"></span></li>
+        <li>Email: <span th:text="${applicant.email}"></span></li>
+        <li>Date of birth: <span th:text="${applicant.dateOfBirth}"></span></li>
+        <li>Passport number: <span th:text="${applicant.passportNumber}"></span></li>
+        <li>Phone number: <span th:text="${applicant.phone}"></span></li>
+        <li>Profession: <span th:text="${applicant.profession}"></span></li>
+    </ul>
+
+    <div class="buttons-container">
+        <form th:action="@{/applicant/update}" method="get">
+            <button type="submit" class="button">Update Information</button>
+        </form>
+    </div>
+
+    <a class="link" href="#" th:href="@{/logout}">Logout</a>
+</div>
+<footer class="footer">
+    © 2023 Some nice footer.
+</footer>
+</body>
+</html>

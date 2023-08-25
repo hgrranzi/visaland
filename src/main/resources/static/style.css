@@ -1,0 +1,134 @@
+html, body, div, h1, h2, h3, h4, h5, h6, p, span, img, ul, ol, li, form, label, button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 24px;
+    color: #703a9a;
+    padding-bottom: 1%;
+}
+
+h2 {
+    font-size: 20px;
+    color: #703a9a;
+    padding-top: 1%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f5f9;
+    color: #333;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: linear-gradient(100deg, #ecefee, #bdb0c6);
+    line-height: 1.5;
+}
+
+.content {
+    padding: 1%;
+    margin: 2%;
+}
+
+ul {
+    margin: 2%;
+}
+
+li {
+    position: relative;
+    color: #333;
+}
+
+button {
+    background-color: #703a9a;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+button:disabled,
+button[disabled] {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: #cccccc;
+    color: #666666;
+}
+
+button:hover {
+    background-color: #85679c;
+}
+
+.buttons-container {
+    display: flex;
+    padding-block: 10px;
+}
+
+.buttons-container .button {
+    margin-right: 20px;
+}
+
+form {
+    padding-block: 1%;
+}
+
+input {
+    margin-block: 0.5%;
+}
+
+table {
+    width: 75%;
+    border-collapse: collapse;
+
+    margin-block: 2%;
+    border: 1px solid #703a9a;
+}
+
+th, td {
+    padding: 1%;
+    text-align: left;
+    border: 1px solid #703a9a;
+}
+
+th {
+    background-color: #703a9a;
+    color: #fff;
+    text-align: center;
+}
+
+.error {
+    color: crimson;
+    font-size: xx-small;
+}
+
+.link {
+    padding-block: 1%;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    background-color: #703a9a;
+    color: #fff;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+.brd {
+    border: 4px double black;
+    padding: 10px;
+}
