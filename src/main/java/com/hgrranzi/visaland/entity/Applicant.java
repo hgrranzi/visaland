@@ -16,7 +16,8 @@ import java.time.LocalDate;
 public class Applicant {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
     @OneToOne

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet logicalFilePath="create-table-applicant"
+               id="create-table-applicant" author="hgrranzi">
+        <createTable tableName="applicant">
+            <column name="id" type="serial">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="first_name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_birth" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passport_number" type="varchar">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="phone" type="varchar(100)"/>
+            <column name="profession" type="varchar"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -26,9 +26,6 @@ public class SecurityConfig {
                                         .permitAll()
                                         .successHandler(authenticationSuccessHandler()))
             .authorizeHttpRequests(auth -> auth
-                                               .requestMatchers("/applicant/**").hasRole("APPLICANT")
-                                               .requestMatchers("/consul/**").hasRole("CONSUL")
-                                               .requestMatchers("/admin/**").hasRole("ADMIN")
                                                .requestMatchers("**.css", "/register").permitAll()
                                                .anyRequest().authenticated());
 
