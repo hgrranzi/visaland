@@ -12,13 +12,13 @@
     <p><b><span th:text="${applicant.username}"></span> </b></p>
 
     <div class="buttons-container">
-        <form method="get" th:action="@{/applicant/select}">
+        <form method="get" th:action="@{/visa/category}">
             <button type="submit" class="button">Apply for a visa</button>
         </form>
-        <form method="get" th:action="@{/applicant/applications}">
+        <form method="get" th:action="@{/visa/applications}">
             <button type="submit" class="button">My applications</button>
         </form>
-        <form method="get" th:action="@{applicant/visas}">
+        <form method="get" th:action="@{/visa/current}">
             <button type="submit" class="button">My visas</button>
         </form>
     </div>
