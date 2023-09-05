@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="insert-applicants" author="hgrranzi">
+        <insert tableName="applicant">
+            <column name="user_id" value="1"/>
+            <column name="first_name" value="John"/>
+            <column name="last_name" value="Doe"/>
+            <column name="date_of_birth" value="2000-03-01"/>
+            <column name="passport_number" value="6565123456"/>
+            <column name="phone" value="+79991231231"/>
+            <column name="profession" value="Programmer"/>
+        </insert>
+        <insert tableName="applicant">
+            <column name="user_id" value="2"/>
+            <column name="first_name" value="Elena"/>
+            <column name="last_name" value="Smith"/>
+            <column name="date_of_birth" value="1992-04-09"/>
+            <column name="passport_number" value="6464999555"/>
+            <column name="phone" value="+79092341625"/>
+            <column name="profession" value="Teacher"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

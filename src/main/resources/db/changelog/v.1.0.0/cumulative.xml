@@ -10,6 +10,8 @@
     <include file="create-table-visa_category.xml" relativeToChangelogFile="true"/>
     <include file="insert-categories.xml" relativeToChangelogFile="true"/>
     <include file="insert-countries.xml" relativeToChangelogFile="true"/>
+    <include file="insert-users.xml" relativeToChangelogFile="true"/>
+    <include file="insert-applicants.xml" relativeToChangelogFile="true"/>
 
 
 </databaseChangeLog>
