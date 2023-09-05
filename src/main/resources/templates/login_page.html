@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
@@ -27,10 +27,7 @@
         <button type="submit">Login</button>
     </form>
     <br>
-    <a href="/register">Register as applicant</a>
+    <a class="link" href="#" th:href="@{/register}">Register as applicant</a>
 </div>
-<footer class="footer">
-    © 2023 Some nice footer.
-</footer>
 </body>
 </html>

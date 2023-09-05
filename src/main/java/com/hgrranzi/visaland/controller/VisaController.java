@@ -1,5 +1,7 @@
 package com.hgrranzi.visaland.controller;
 
+import com.hgrranzi.visaland.dto.ApplicationDto;
+import com.hgrranzi.visaland.entity.Application;
 import com.hgrranzi.visaland.entity.Country;
 import com.hgrranzi.visaland.entity.VisaCategory;
 import com.hgrranzi.visaland.repository.CountryRepository;
@@ -10,8 +12,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,5 +36,34 @@ public class VisaController {
         model.addAttribute("countries", country);
         model.addAttribute("categories", categories);
         return "category_page";
+    }
+
+    @GetMapping("/select")
+    @PreAuthorize("hasRole('APPLICANT')")
+    public String showApplyForVisaPage(@ModelAttribute(name = "category") String categoryName,
+                                       @ModelAttribute(name = "country") String country, Model model) {
+        model.addAttribute("applicationDto", ApplicationDto.builder()
+                                                 .visaCategory(categoryName)
+                                                 .country(country)
+                                                 .build());
+        return "apply_for_visa_page";
+    }
+
+    @PostMapping("/select")
+    @PreAuthorize("hasRole('APPLICANT')")
+    public String apply(@ModelAttribute("applicationDto") ApplicationDto applicationDto) {
+        System.err.println(applicationDto);
+        //check for errors
+        //add application to db
+        return "redirect:/visa/applications";
+    }
+
+    @GetMapping("/applications")
+    @PreAuthorize("hasRole('APPLICANT')")
+    public String showApplicationsPage(Model model, Authentication authentication) {
+        List<Application> applications = new ArrayList<>();
+        model.addAttribute("applications", applications);
+
+        return "applications_page";
     }
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta charset="UTF-8">
+    <title>Apply</title>
+</head>
+<body>
+<div class="content">
+    <h1>Visaland Online</h1>
+
+    <form th:action="@{/visa/select}" method="post" th:object="${applicationDto}">
+        <label>Country:</label>
+        <label>
+            <input type="text" th:field="*{country}" readonly>
+        </label>
+        <br>
+        <label>Category:</label>
+        <label>
+            <input type="text" th:field="*{visaCategory}" readonly>
+        </label>
+        <br>
+        <label>Date of entry:</label>
+        <label>
+            <input type="date" th:field="*{entryDate}" required>
+            <!--            <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>-->
+        </label>
+        <br>
+        <label>Duration days:</label>
+        <label>
+            <input type="text" th:field="*{durationDays}" required>
+            <!--            <span class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>-->
+        </label>
+        <br>
+        <button type="submit">Apply</button>
+    </form>
+    <br>
+    <a class="link" href="#" th:href="@{/applicant}">Main page</a>
+    <br>
+    <a class="link" href="#" th:href="@{/logout}">Logout</a>
+</div>
+</body>
+</html>

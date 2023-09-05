@@ -47,7 +47,7 @@ public class Application {
     private int durationDays;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private ApplicationStatus status;
 
     @Column(name = "comment")

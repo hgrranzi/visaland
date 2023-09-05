@@ -3,51 +3,47 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/style.css">
     <meta charset="UTF-8">
-    <title>Credit Offers</title>
+    <title>Categories</title>
 </head>
 <body>
 <div class="content">
     <h1>Visaland Online</h1>
+    <p>Please select country and visa category</p>
 
-    <h2>Visa Categories</h2>
     <table>
         <thead>
         <tr>
-            <th>Country</th>
             <th>Visa category</th>
             <th>Maximum duration</th>
+            <th>Country</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="category : ${categories}">
-            <td>
-                <label>
-                    <select>
-                        <option th:each="country : ${countries}" th:text="${country.name}"
-                                th:value="${country.name}">
-                        </option>
-                    </select>
-                </label>
-            </td>
             <td th:text="${category.name}"></td>
-            <td th:text="${category.maxDurationDays}"></td>
-            <td>
-                <form method="get" th:action="@{/visa/select}">
-                    <input type="hidden" th:name="categoryId" th:value="${category.id}"/>
+            <td><span th:text="${category.maxDurationDays}"> days</span></td>
+            <form th:action="@{/visa/select}" method="get">
+                <td>
+                    <label>
+                        <select name="country">
+                            <option th:each="country : ${countries}" th:text="${country.name}"
+                                    th:value="${country.name}"></option>
+                        </select>
+                    </label>
+                </td>
+                <td>
+                    <input type="hidden" name="category" th:value="${category.name}"/>
                     <button type="submit" class="button">Select</button>
-                </form>
-            </td>
+                </td>
+            </form>
         </tr>
         </tbody>
     </table>
-
+    <br>
     <a class="link" href="#" th:href="@{/applicant}">Main page</a>
     <br>
     <a class="link" href="#" th:href="@{/logout}">Logout</a>
 </div>
-<footer class="footer">
-    © 2023 Some nice footer.
-</footer>
 </body>
 </html>
