@@ -15,7 +15,8 @@
     <include file="insert-countries.xml" relativeToChangelogFile="true"/>
     <include file="insert-users.xml" relativeToChangelogFile="true"/>
     <include file="insert-applicants.xml" relativeToChangelogFile="true"/>
-    <include file="insert-applications.xml" relativeToChangelogFile="true"/>
     <include file="insert-consuls.xml" relativeToChangelogFile="true"/>
+    <include file="insert-applications.xml" relativeToChangelogFile="true"/>
+    <include file="insert-visas.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

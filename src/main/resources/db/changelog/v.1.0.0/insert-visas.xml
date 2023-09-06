@@ -4,17 +4,14 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="insert-applications" author="hgrranzi">
-        <insert tableName="application">
+    <changeSet id="insert-visas" author="hgrranzi">
+        <insert tableName="visa">
             <column name="applicant_id" valueNumeric="1"/>
-            <column name="category_id" valueNumeric="1"/>
-            <column name="country_id" valueNumeric="1"/>
-            <column name="consul_id" valueNumeric="1"/>
-            <column name="application_date" valueDate="2023-09-06"/>
+            <column name="application_id" valueNumeric="1"/>
+            <column name="category" value="Short stay all kind"/>
+            <column name="country" value="France"/>
             <column name="start_date" valueDate="2023-10-06"/>
-            <column name="duration_days" valueNumeric="10"/>
-            <column name="status" value="ACCEPTED"/>
-            <column name="comment" value="Visa accepted"/>
+            <column name="end_date" valueDate="2023-10-16"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
