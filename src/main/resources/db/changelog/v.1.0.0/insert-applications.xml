@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="insert-applications" author="hgrranzi">
+        <insert tableName="application">
+            <column name="applicant_id" valueNumeric="1"/>
+            <column name="category_id" valueNumeric="1"/>
+            <column name="country_id" valueNumeric="1"/>
+            <!--            <column name="consul_id" valueComputed="NULL" />-->
+            <column name="application_date" valueDate="2023-09-06"/>
+            <column name="start_date" valueDate="2023-09-07"/>
+            <column name="duration_days" valueNumeric="10"/>
+            <column name="status" value="OPEN"/>
+            <column name="comment" value="Sample Comment"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

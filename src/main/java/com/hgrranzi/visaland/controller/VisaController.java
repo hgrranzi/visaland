@@ -1,11 +1,13 @@
 package com.hgrranzi.visaland.controller;
 
 import com.hgrranzi.visaland.dto.ApplicationDto;
-import com.hgrranzi.visaland.entity.Application;
+import com.hgrranzi.visaland.entity.Applicant;
 import com.hgrranzi.visaland.entity.Country;
 import com.hgrranzi.visaland.entity.VisaCategory;
+import com.hgrranzi.visaland.repository.ApplicantRepository;
 import com.hgrranzi.visaland.repository.CountryRepository;
 import com.hgrranzi.visaland.repository.VisaCategoryRepository;
+import com.hgrranzi.visaland.service.ApplicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,6 +28,10 @@ public class VisaController {
     private final VisaCategoryRepository visaCategoryRepository;
 
     private final CountryRepository countryRepository;
+
+    private final ApplicantRepository applicantRepository;
+
+    private final ApplicationService applicationService;
 
     @GetMapping("/category")
     @PreAuthorize("hasRole('APPLICANT')")
@@ -61,8 +66,10 @@ public class VisaController {
     @GetMapping("/applications")
     @PreAuthorize("hasRole('APPLICANT')")
     public String showApplicationsPage(Model model, Authentication authentication) {
-        List<Application> applications = new ArrayList<>();
-        model.addAttribute("applications", applications);
+        //check for errors
+        Applicant applicant = applicantRepository.findByUserUsername(authentication.getName()).orElse(null);
+
+        model.addAttribute("applications", applicationService.findAllApplicationsForApplicant(applicant));
 
         return "applications_page";
     }

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 public class ApplicationDto {
 
-    private String applicantUsername;
+    private LocalDate applicationDate;
 
     private String visaCategory;
 
@@ -21,5 +21,7 @@ public class ApplicationDto {
     private LocalDate entryDate;
 
     private int durationDays;
+
+    private String status;
 
 }

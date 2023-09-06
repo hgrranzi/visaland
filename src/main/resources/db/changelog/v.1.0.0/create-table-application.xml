@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-table-application" author="hgrranzi">
+        <createTable tableName="application">
+            <column name="id" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="applicant_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="consul_id" type="BIGINT">
+            </column>
+            <column name="application_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration_days" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+            </column>
+            <column name="comment" type="TEXT">
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="application" baseColumnNames="applicant_id"
+                                 referencedTableName="applicant" referencedColumnNames="id"
+                                 constraintName="fk_application_applicant"/>
+        <addForeignKeyConstraint baseTableName="application" baseColumnNames="category_id"
+                                 referencedTableName="visa_category" referencedColumnNames="id"
+                                 constraintName="fk_application_category"/>
+        <addForeignKeyConstraint baseTableName="application" baseColumnNames="country_id"
+                                 referencedTableName="country" referencedColumnNames="id"
+                                 constraintName="fk_application_country"/>
+        <addForeignKeyConstraint baseTableName="application" baseColumnNames="consul_id"
+                                 referencedTableName="consul" referencedColumnNames="id"
+                                 constraintName="fk_application_consul"/>
+    </changeSet>
+</databaseChangeLog>
