@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
 
-    List<Application> findAllByApplicant(Applicant applicant);
+    List<Application> findAllByApplicantOrderByApplicationDate(Applicant applicant);
 }

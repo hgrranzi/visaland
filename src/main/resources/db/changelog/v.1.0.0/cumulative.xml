@@ -10,11 +10,12 @@
     <include file="create-table-visa_category.xml" relativeToChangelogFile="true"/>
     <include file="create-table-consul.xml" relativeToChangelogFile="true"/>
     <include file="create-table-application.xml" relativeToChangelogFile="true"/>
+    <include file="create-table-visa.xml" relativeToChangelogFile="true"/>
     <include file="insert-categories.xml" relativeToChangelogFile="true"/>
     <include file="insert-countries.xml" relativeToChangelogFile="true"/>
     <include file="insert-users.xml" relativeToChangelogFile="true"/>
     <include file="insert-applicants.xml" relativeToChangelogFile="true"/>
     <include file="insert-applications.xml" relativeToChangelogFile="true"/>
-
+    <include file="insert-consuls.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

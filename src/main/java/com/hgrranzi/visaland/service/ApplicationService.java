@@ -20,7 +20,7 @@ public class ApplicationService {
     private final ApplicationMapper applicationMapper;
 
     public List<ApplicationDto> findAllApplicationsForApplicant(Applicant applicant) {
-        List<Application> entities = applicationRepository.findAllByApplicant(applicant);
+        List<Application> entities = applicationRepository.findAllByApplicantOrderByApplicationDate(applicant);
         return entities.stream()
                    .map(applicationMapper::entityToDto)
                    .collect(Collectors.toList());

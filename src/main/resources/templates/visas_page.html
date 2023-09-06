@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta charset="UTF-8">
+    <title>Applications</title>
+</head>
+<body>
+<div class="content">
+    <h2>My visas</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Country</th>
+            <th>Visa category</th>
+            <th>Start date</th>
+            <th>End date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="visa : ${visas}">
+            <td th:text="${visa.country}"></td>
+            <td th:text="${visa.category}"></td>
+            <td th:text="${visa.startDate}"></td>
+            <td th:text="${visa.endDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a class="link" href="#" th:href="@{/applicant}">Main page</a>
+    <br>
+    <a class="link" href="#" th:href="@{/logout}">Logout</a>
+</div>
+</body>
+</html>

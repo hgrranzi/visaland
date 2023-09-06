@@ -34,9 +34,9 @@ public class Visa {
     @Column(name = "country", nullable = false)
     private String country;
 
-    @Column(name = "duration_days", nullable = false)
-    private int durationDays;
-
     @Column(name = "start_date", nullable = false)
     private Date startDate;
+
+    @Column(name = "end_date", nullable = false)
+    private Date endDate;
 }

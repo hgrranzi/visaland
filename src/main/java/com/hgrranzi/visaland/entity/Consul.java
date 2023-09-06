@@ -29,14 +29,7 @@ public class Consul {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "middle_name")
-    private String middleName;
-
-    @Column(name = "city", nullable = false)
-    private String city;
-
     @OneToMany(mappedBy = "consul", fetch = FetchType.LAZY)
     private Set<Application> applications;
 
 }
-

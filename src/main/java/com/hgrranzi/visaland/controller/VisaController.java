@@ -8,6 +8,7 @@ import com.hgrranzi.visaland.repository.ApplicantRepository;
 import com.hgrranzi.visaland.repository.CountryRepository;
 import com.hgrranzi.visaland.repository.VisaCategoryRepository;
 import com.hgrranzi.visaland.service.ApplicationService;
+import com.hgrranzi.visaland.service.VisaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -32,6 +33,8 @@ public class VisaController {
     private final ApplicantRepository applicantRepository;
 
     private final ApplicationService applicationService;
+
+    private final VisaService visaService;
 
     @GetMapping("/category")
     @PreAuthorize("hasRole('APPLICANT')")
@@ -72,5 +75,16 @@ public class VisaController {
         model.addAttribute("applications", applicationService.findAllApplicationsForApplicant(applicant));
 
         return "applications_page";
+    }
+
+    @GetMapping("/current")
+    @PreAuthorize("hasRole('APPLICANT')")
+    public String showVisasPage(Model model, Authentication authentication) {
+        //check for errors
+        Applicant applicant = applicantRepository.findByUserUsername(authentication.getName()).orElse(null);
+
+        model.addAttribute("visas", visaService.findAllVisasForApplicant(applicant));
+
+        return "visas_page";
     }
 }
