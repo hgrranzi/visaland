@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VisaCategoryRepository extends JpaRepository<VisaCategory, Long> {
+
+    VisaCategory findByName(String name);
 }

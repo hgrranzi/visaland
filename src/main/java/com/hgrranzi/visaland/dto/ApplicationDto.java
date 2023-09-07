@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 public class ApplicationDto {
 
-    private LocalDate applicationDate;
+    private LocalDate applicationDate = LocalDate.now();
 
     private String visaCategory;
 
@@ -22,6 +22,6 @@ public class ApplicationDto {
 
     private int durationDays;
 
-    private String status;
+    private String status = "OPEN";
 
 }

@@ -59,10 +59,11 @@ public class VisaController {
 
     @PostMapping("/select")
     @PreAuthorize("hasRole('APPLICANT')")
-    public String apply(@ModelAttribute("applicationDto") ApplicationDto applicationDto) {
-        System.err.println(applicationDto);
+    public String apply(@ModelAttribute("applicationDto") ApplicationDto applicationDto, Authentication authentication) {
         //check for errors
-        //add application to db
+        Applicant applicant = applicantRepository.findByUserUsername(authentication.getName()).orElse(null);
+
+        applicationService.saveNewApplication(applicationDto, applicant);
         return "redirect:/visa/applications";
     }
 
