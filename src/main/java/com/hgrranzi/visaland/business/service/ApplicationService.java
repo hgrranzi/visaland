@@ -6,6 +6,7 @@ import com.hgrranzi.visaland.persistence.entity.Application;
 import com.hgrranzi.visaland.persistence.entity.Country;
 import com.hgrranzi.visaland.persistence.entity.VisaCategory;
 import com.hgrranzi.visaland.business.mapper.ApplicationMapper;
+import com.hgrranzi.visaland.persistence.repository.ApplicantRepository;
 import com.hgrranzi.visaland.persistence.repository.ApplicationRepository;
 import com.hgrranzi.visaland.persistence.repository.CountryRepository;
 import com.hgrranzi.visaland.persistence.repository.VisaCategoryRepository;
@@ -25,16 +26,22 @@ public class ApplicationService {
 
     private final ApplicationRepository applicationRepository;
 
+    private final ApplicantRepository applicantRepository;
+
     private final ApplicationMapper applicationMapper;
 
-    public List<ApplicationDto> findAllApplicationsForApplicant(Applicant applicant) {
-        List<Application> entities = applicationRepository.findAllByApplicantOrderByApplicationDate(applicant);
-        return entities.stream()
+    public List<ApplicationDto> findAllApplicationsForApplicantWithUsername(String username) {
+        List<Application> apps = applicationRepository.findAllByApplicant_User_UsernameOrderByApplicationDate(username);
+        return apps.stream()
                    .map(applicationMapper::entityToDto)
                    .collect(Collectors.toList());
     }
 
-    public void saveNewApplication(ApplicationDto applicationDto, Applicant applicant) {
+    public void saveNewApplicationFromApplicantWithUsername(ApplicationDto applicationDto, String username) {
+        Applicant applicant = applicantRepository.findByUserUsername(username).orElse(null);
+        if (applicant == null) {
+            throw new IllegalArgumentException("NONONO");
+        }
         VisaCategory category = visaCategoryRepository.findByName(applicationDto.getVisaCategory());
         Country country = countryRepository.findByName(applicationDto.getCountry());
 

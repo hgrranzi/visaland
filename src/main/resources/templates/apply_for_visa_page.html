@@ -9,7 +9,7 @@
 <div class="content">
     <h1>Visaland Online</h1>
 
-    <form th:action="@{/visa/select}" method="post" th:object="${applicationDto}">
+    <form th:action="@{/visa/apply}" method="post" th:object="${applicationDto}">
         <label>Country:</label>
         <label>
             <input type="text" th:field="*{country}" readonly>
