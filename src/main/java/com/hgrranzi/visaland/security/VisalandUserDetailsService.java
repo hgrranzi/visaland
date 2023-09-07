@@ -1,7 +1,7 @@
 package com.hgrranzi.visaland.security;
 
-import com.hgrranzi.visaland.entity.User;
-import com.hgrranzi.visaland.repository.UserRepository;
+import com.hgrranzi.visaland.persistence.entity.User;
+import com.hgrranzi.visaland.persistence.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
