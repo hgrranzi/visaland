@@ -39,11 +39,12 @@ public class ApplicationService {
 
     public void saveNewApplicationFromApplicantWithUsername(ApplicationDto applicationDto, String username) {
         Applicant applicant = applicantRepository.findByUserUsername(username).orElse(null);
-        if (applicant == null) {
-            throw new IllegalArgumentException("NONONO");
-        }
         VisaCategory category = visaCategoryRepository.findByName(applicationDto.getVisaCategory());
         Country country = countryRepository.findByName(applicationDto.getCountry());
+        if (applicant == null || category == null || country == null) {
+            throw new IllegalArgumentException("NONONO");
+            //custom exception needed and handle it returning error page with text
+        }
 
         applicationRepository.save(applicationMapper.dtoToEntity(applicationDto, applicant, category, country));
     }

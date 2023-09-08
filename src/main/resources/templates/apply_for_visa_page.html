@@ -9,7 +9,7 @@
 <div class="content">
     <h1>Visaland Online</h1>
 
-    <form th:action="@{/visa/apply}" method="post" th:object="${applicationDto}">
+    <form th:action="@{/visa/select}" method="post" th:object="${applicationDto}">
         <label>Country:</label>
         <label>
             <input type="text" th:field="*{country}" readonly>
@@ -23,13 +23,13 @@
         <label>Date of entry:</label>
         <label>
             <input type="date" th:field="*{entryDate}" required>
-            <!--            <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>-->
+            <span class="error" th:if="${#fields.hasErrors('entryDate')}" th:errors="*{entryDate}"></span>
         </label>
         <br>
         <label>Duration days:</label>
         <label>
             <input type="text" th:field="*{durationDays}" required>
-            <!--            <span class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>-->
+            <span class="error" th:if="${#fields.hasErrors('durationDays')}" th:errors="*{durationDays}"></span>
         </label>
         <br>
         <button type="submit">Apply</button>

@@ -4,11 +4,13 @@ import com.hgrranzi.visaland.api.dto.ApplicationDto;
 import com.hgrranzi.visaland.api.dto.VisaDto;
 import com.hgrranzi.visaland.business.service.ApplicationService;
 import com.hgrranzi.visaland.business.service.VisaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +36,7 @@ public class VisaController {
         return "category_page";
     }
 
-    @PostMapping("/select")
+    @GetMapping("/select")
     @PreAuthorize("hasRole('APPLICANT')")
     public String showApplyForVisaPage(@ModelAttribute(name = "category") String categoryName,
                                        @ModelAttribute(name = "country") String country, Model model) {
@@ -45,10 +47,14 @@ public class VisaController {
         return "apply_for_visa_page";
     }
 
-    @PostMapping("/apply")
+    @PostMapping("/select")
     @PreAuthorize("hasRole('APPLICANT')")
-    public String apply(@ModelAttribute("applicationDto") ApplicationDto applicationDto, Authentication auth) {
-        //check for errors
+    public String apply(@Valid @ModelAttribute("applicationDto") ApplicationDto applicationDto,
+                        BindingResult bindingResult,
+                        Authentication auth) {
+        if (bindingResult.hasErrors()) {
+            return "apply_for_visa_page";
+        }
 
         applicationService.saveNewApplicationFromApplicantWithUsername(applicationDto, auth.getName());
 

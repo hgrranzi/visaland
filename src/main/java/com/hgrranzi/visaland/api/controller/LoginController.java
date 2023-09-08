@@ -3,6 +3,7 @@ package com.hgrranzi.visaland.api.controller;
 import com.hgrranzi.visaland.api.dto.ApplicantDto;
 import com.hgrranzi.visaland.business.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -32,9 +33,9 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public String processRegistration(@ModelAttribute("applicantDto") ApplicantDto applicantDto,
-                                      BindingResult result, HttpServletResponse response) {
-        if (result.hasErrors() || userService.existsByUniqueData(applicantDto, result)) {
+    public String processRegistration(@Valid @ModelAttribute("applicantDto") ApplicantDto applicantDto,
+                                      BindingResult bindingResult, HttpServletResponse response) {
+        if (bindingResult.hasErrors() || userService.existsByUniqueData(applicantDto, bindingResult)) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return "registration_page";
         }

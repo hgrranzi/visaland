@@ -23,7 +23,7 @@
         <tr th:each="category : ${categories}">
             <td th:text="${category.name}"></td>
             <td><span th:text="${category.maxDurationDays}"> days</span></td>
-            <form th:action="@{/visa/select}" method="post">
+            <form th:action="@{/visa/select}" method="get">
                 <td>
                     <label>
                         <select name="country">
