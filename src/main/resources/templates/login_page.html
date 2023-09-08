@@ -12,7 +12,7 @@
     <a class="link" href="#" th:href="@{/logout}">Logout</a>
 </div>
 <div th:if="${loggedInMessage == null}" class="content">
-    <h1>Please enter username and password</h1>
+    <h2>Please enter username and password</h2>
     <form action="/login" method="post">
         <div class="form-group">
             <label for="username">Username</label>
