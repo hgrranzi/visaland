@@ -2,6 +2,7 @@ package com.hgrranzi.visaland.api.controller;
 
 import com.hgrranzi.visaland.api.dto.ApplicantDto;
 import com.hgrranzi.visaland.business.service.UserService;
+import com.hgrranzi.visaland.logging.LogUserAction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -19,6 +20,7 @@ public class ApplicantController {
 
     @GetMapping
     @PreAuthorize("hasRole('APPLICANT')")
+    @LogUserAction(description = "Request of applicant page by user")
     public String showApplicantPage(Model model, Authentication authentication) {
         String username = authentication.getName();
         ApplicantDto applicant = userService.createApplicantDtoByUsername(username);

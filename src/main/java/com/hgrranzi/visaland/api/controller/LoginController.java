@@ -2,6 +2,7 @@ package com.hgrranzi.visaland.api.controller;
 
 import com.hgrranzi.visaland.api.dto.ApplicantDto;
 import com.hgrranzi.visaland.business.service.UserService;
+import com.hgrranzi.visaland.logging.LogUserAction;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class LoginController {
     private final UserService userService;
 
     @GetMapping("/login")
+    @LogUserAction(description = "Request of login page by user")
     public String showLoginForm(Model model, Authentication authentication) {
         model.addAttribute("loggedInMessage", null);
 
@@ -27,12 +29,14 @@ public class LoginController {
     }
 
     @GetMapping("/register")
+    @LogUserAction(description = "Request of registration page by user")
     public String showRegistrationForm(Model model) {
         model.addAttribute("applicantDto", new ApplicantDto());
         return "registration_page";
     }
 
     @PostMapping("/register")
+    @LogUserAction(description = "Request of registration by user")
     public String processRegistration(@Valid @ModelAttribute("applicantDto") ApplicantDto applicantDto,
                                       BindingResult bindingResult, HttpServletResponse response) {
         if (bindingResult.hasErrors() || userService.existsByUniqueData(applicantDto, bindingResult)) {

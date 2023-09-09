@@ -23,7 +23,7 @@ public class UserService {
         User user = new User(applicantDto.getUsername(),
                              applicantDto.getEmail(),
                              passwordEncoder.encode(applicantDto.getPassword()));
-        user.setRole(RoleName.APPLICANT);
+        user.setRole(RoleName.ROLE_APPLICANT);
 
         Applicant applicant = Applicant.builder()
                                   .firstName(applicantDto.getFirstName())

@@ -10,25 +10,25 @@
             <column name="username" value="qwerty"/>
             <column name="email" value="qwerty@mail.com"/>
             <column name="password" value="$2a$10$2CIOpqvkfm35K8ZZ.Vk7Ge0iwAoVeo7EI7Psk39.0Sn5u/KRZS/G6"/>
-            <column name="role" value="APPLICANT"/>
+            <column name="role" value="ROLE_APPLICANT"/>
         </insert>
         <insert tableName="user">
             <column name="username" value="ytrewq"/>
             <column name="email" value="ytrewq@mail.com"/>
             <column name="password" value="$2a$10$NvgZjvGy3.ZSn3h5BQQWv.ViCVAoXdVMAhtB2kLezBjliFYMGQXxK"/>
-            <column name="role" value="APPLICANT"/>
+            <column name="role" value="ROLE_APPLICANT"/>
         </insert>
         <insert tableName="user">
             <column name="username" value="consulA"/>
             <column name="email" value="consulA@mail.com"/>
             <column name="password" value="$2a$10$5SIvMjRmX0zmBklLDpSnw.nJ4N4.YtWhGnJkIr.kjNW198iGlSCyK"/>
-            <column name="role" value="CONSUL"/>
+            <column name="role" value="ROLE_CONSUL"/>
         </insert>
         <insert tableName="user">
             <column name="username" value="consulB"/>
             <column name="email" value="consulB@mail.com"/>
             <column name="password" value="$2a$10$rYxitp8gNGY.W9NDR793mO.DVCWHRaJ4dDXTILheqcTFqeOhLBGs."/>
-            <column name="role" value="CONSUL"/>
+            <column name="role" value="ROLE_CONSUL"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

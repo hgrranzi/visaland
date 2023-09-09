@@ -13,13 +13,13 @@ public class VisalandAuthSuccessHandler implements AuthenticationSuccessHandler 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         for (GrantedAuthority authority : authentication.getAuthorities()) {
-            if (authority.getAuthority().equals("APPLICANT")) {
+            if (authority.getAuthority().equals("ROLE_APPLICANT")) {
                 response.sendRedirect("/applicant");
                 return;
-            } else if (authority.getAuthority().equals("CONSUL")) {
+            } else if (authority.getAuthority().equals("ROLE_CONSUL")) {
                 response.sendRedirect("/consul");
                 return;
-            } else if (authority.getAuthority().equals("ADMIN")) {
+            } else if (authority.getAuthority().equals("ROLE_ADMIN")) {
                 response.sendRedirect("/admin");
                 return;
             }

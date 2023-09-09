@@ -1,7 +1,7 @@
 package com.hgrranzi.visaland.persistence.entity;
 
 public enum RoleName {
-    ADMIN,
-    APPLICANT,
-    CONSUL
+    ROLE_ADMIN,
+    ROLE_APPLICANT,
+    ROLE_CONSUL
 }
