@@ -8,7 +8,7 @@
         <insert tableName="visa">
             <column name="applicant_id" valueNumeric="1"/>
             <column name="application_id" valueNumeric="1"/>
-            <column name="category" value="Short stay all kind"/>
+            <column name="category" value="Short stay tourism"/>
             <column name="country" value="France"/>
             <column name="start_date" valueDate="2023-10-06"/>
             <column name="end_date" valueDate="2023-10-16"/>

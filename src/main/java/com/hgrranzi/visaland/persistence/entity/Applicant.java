@@ -36,8 +36,8 @@ public class Applicant {
     @Column(name = "passport_number", nullable = false, unique = true)
     private String passportNumber;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "city")
+    private String city;
 
     @Column(name = "profession")
     private String profession;

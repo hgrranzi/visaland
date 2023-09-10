@@ -13,5 +13,4 @@ public interface ApplicantRepository extends JpaRepository<Applicant, Long> {
 
     boolean existsByPassportNumber(String passportNumber);
 
-    boolean existsByPhone(String phone);
 }

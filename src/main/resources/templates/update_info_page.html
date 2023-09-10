@@ -23,11 +23,13 @@
         <label>Last name:</label>
         <label>
             <input type="text" th:field="*{lastName}" required>
+            <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
         </label>
         <br>
         <label>First name:</label>
         <label>
             <input type="text" th:field="*{firstName}" required>
+            <span class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
         </label>
         <br>
         <label>Date of birth:</label>
@@ -40,9 +42,11 @@
             <input type="text" th:field="*{passportNumber}" readonly>
         </label>
         <br>
-        <label>Phone:</label>
+        <label>City:</label>
         <label>
-            <input type="text" th:field="*{phone}" readonly>
+            <input type="text" th:field="*{city}" required>
+            <span class="error" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+
         </label>
         <br>
         <label>Profession:</label>

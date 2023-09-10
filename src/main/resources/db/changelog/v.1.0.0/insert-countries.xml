@@ -18,5 +18,14 @@
         <insert tableName="country">
             <column name="name" value="Belgium"/>
         </insert>
+        <insert tableName="country">
+            <column name="name" value="Morocco"/>
+        </insert>
+        <insert tableName="country">
+            <column name="name" value="Mexico"/>
+        </insert>
+        <insert tableName="country">
+            <column name="name" value="Japan"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

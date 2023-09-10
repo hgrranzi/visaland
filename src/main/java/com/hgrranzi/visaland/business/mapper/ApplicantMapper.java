@@ -18,7 +18,7 @@ public interface ApplicantMapper {
         @Mapping(source = "lastName", target = "lastName"),
         @Mapping(source = "dateOfBirth", target = "dateOfBirth"),
         @Mapping(source = "passportNumber", target = "passportNumber"),
-        @Mapping(source = "phone", target = "phone"),
+        @Mapping(source = "city", target = "city"),
         @Mapping(source = "profession", target = "profession")
     })
     ApplicantDto entityToDto(Applicant applicant);
@@ -30,7 +30,7 @@ public interface ApplicantMapper {
         @Mapping(source = "applicant.lastName", target = "lastName"),
         @Mapping(source = "applicant.dateOfBirth", target = "dateOfBirth"),
         @Mapping(source = "applicant.passportNumber", target = "passportNumber"),
-        @Mapping(source = "applicant.phone", target = "phone"),
+        @Mapping(source = "applicant.city", target = "city"),
         @Mapping(source = "applicant.profession", target = "profession")
     })
     Applicant dtoToEntity(ApplicantDto applicant, User user);

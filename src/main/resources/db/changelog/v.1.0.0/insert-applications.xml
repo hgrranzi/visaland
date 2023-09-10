@@ -7,7 +7,7 @@
     <changeSet id="insert-applications" author="hgrranzi">
         <insert tableName="application">
             <column name="applicant_id" valueNumeric="1"/>
-            <column name="category_id" valueNumeric="1"/>
+            <column name="category_id" valueNumeric="2"/>
             <column name="country_id" valueNumeric="1"/>
             <column name="consul_id" valueNumeric="1"/>
             <column name="application_date" valueDate="2023-09-06"/>

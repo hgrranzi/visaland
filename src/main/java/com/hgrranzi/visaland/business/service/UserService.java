@@ -44,6 +44,7 @@ public class UserService {
 
         applicant.setFirstName(applicantDto.getFirstName());
         applicant.setFirstName(applicantDto.getLastName());
+        applicant.setCity(applicantDto.getCity());
         applicant.setProfession(applicantDto.getProfession());
 
         applicantRepository.save(applicant);
@@ -67,10 +68,6 @@ public class UserService {
         }
         if (applicantRepository.existsByPassportNumber(registrationDto.getPassportNumber())) {
             result.rejectValue("passportNumber", "error.passport.exists");
-            returnValue = true;
-        }
-        if (applicantRepository.existsByPhone(registrationDto.getPassportNumber())) {
-            result.rejectValue("phone", "error.phone.exists");
             returnValue = true;
         }
         return returnValue;

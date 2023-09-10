@@ -22,10 +22,10 @@ public class ApplicantDto {
     @Size(min = 6, max = 50, message = "{error.validation.password}")
     private String password;
 
-    @Pattern(regexp = "^[a-zA-Z]{2,50}$", message = "{error.validation.Name}")
+    @Pattern(regexp = "^[A-Za-z -']{2,50}$", message = "{error.validation.Name}")
     private String firstName;
 
-    @Pattern(regexp = "^[a-zA-Z]{2,50}$", message = "{error.validation.Name}")
+    @Pattern(regexp = "^[A-Za-z -']{2,50}$", message = "{error.validation.Name}")
     private String lastName;
 
     @PastOrPresent(message = "{error.validation.DateOfBirth}")
@@ -34,8 +34,8 @@ public class ApplicantDto {
     @Pattern(regexp = "^\\d{10}$", message = "{error.validation.passportNumber}")
     private String passportNumber;
 
-    @Pattern(regexp = "^\\d{10}$", message = "{error.validation.phone}")
-    private String phone;
+    @Pattern(regexp = "^[A-Za-z -']{2,50}$", message = "{error.validation.city}")
+    private String city;
 
     @Pattern(regexp = "^[a-zA-Z]{2,50}$|^$", message = "{error.validation.profession}")
     private String profession;

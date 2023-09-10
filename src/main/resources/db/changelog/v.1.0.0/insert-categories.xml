@@ -7,12 +7,32 @@
     <changeSet logicalFilePath="insert-categories"
                id="insert-categories" author="hgrranzi">
         <insert tableName="visa_category">
-            <column name="name" value="Short stay all kind"/>
+            <column name="name" value="Airport transit visa"/>
+            <column name="max_duration_days" value="3"/>
+        </insert>
+        <insert tableName="visa_category">
+            <column name="name" value="Short stay tourism"/>
             <column name="max_duration_days" value="180"/>
         </insert>
         <insert tableName="visa_category">
-            <column name="name" value="Long stay higher education"/>
+            <column name="name" value="Short stay medical care reasons"/>
+            <column name="max_duration_days" value="360"/>
+        </insert>
+        <insert tableName="visa_category">
+            <column name="name" value="Short stay cultural and sports crews"/>
+            <column name="max_duration_days" value="180"/>
+        </insert>
+        <insert tableName="visa_category">
+            <column name="name" value="Long stay education"/>
             <column name="max_duration_days" value="365"/>
+        </insert>
+        <insert tableName="visa_category">
+            <column name="name" value="Long stay business"/>
+            <column name="max_duration_days" value="365"/>
+        </insert>
+        <insert tableName="visa_category">
+            <column name="name" value="Long stay family"/>
+            <column name="max_duration_days" value="550"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
