@@ -11,7 +11,7 @@
             <column name="last_name" value="Doe"/>
             <column name="date_of_birth" value="2000-03-01"/>
             <column name="passport_number" value="6565123456"/>
-            <column name="phone" value="+79991231231"/>
+            <column name="phone" value="9991231231"/>
             <column name="profession" value="Programmer"/>
         </insert>
         <insert tableName="applicant">
@@ -20,7 +20,7 @@
             <column name="last_name" value="Smith"/>
             <column name="date_of_birth" value="1992-04-09"/>
             <column name="passport_number" value="6464999555"/>
-            <column name="phone" value="+79092341625"/>
+            <column name="phone" value="9092341625"/>
             <column name="profession" value="Teacher"/>
         </insert>
     </changeSet>

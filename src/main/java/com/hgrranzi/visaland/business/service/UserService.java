@@ -1,6 +1,8 @@
 package com.hgrranzi.visaland.business.service;
 
 import com.hgrranzi.visaland.api.dto.ApplicantDto;
+import com.hgrranzi.visaland.business.exception.VisalandException;
+import com.hgrranzi.visaland.business.mapper.ApplicantMapper;
 import com.hgrranzi.visaland.persistence.entity.Applicant;
 import com.hgrranzi.visaland.persistence.entity.RoleName;
 import com.hgrranzi.visaland.persistence.entity.User;
@@ -11,59 +13,46 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import static java.lang.String.format;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
+
     private final ApplicantRepository applicantRepository;
+
     private final PasswordEncoder passwordEncoder;
+
+    private final ApplicantMapper applicantMapper;
 
     public void registerUserAsApplicant(ApplicantDto applicantDto) {
         User user = new User(applicantDto.getUsername(),
                              applicantDto.getEmail(),
                              passwordEncoder.encode(applicantDto.getPassword()));
         user.setRole(RoleName.ROLE_APPLICANT);
-
-        Applicant applicant = Applicant.builder()
-                                  .firstName(applicantDto.getFirstName())
-                                  .lastName(applicantDto.getLastName())
-                                  .dateOfBirth(applicantDto.getDateOfBirth())
-                                  .passportNumber(applicantDto.getPassportNumber())
-                                  .phone(applicantDto.getPhone())
-                                  .profession(applicantDto.getProfession())
-                                  .build();
-        applicant.setUser(user);
+        Applicant applicant = applicantMapper.dtoToEntity(applicantDto, user);
 
         userRepository.save(user);
         applicantRepository.save(applicant);
     }
 
-    public void updateApplicantProfile(ApplicantDto updateApplicantDto) {
-        Applicant applicant = applicantRepository.findByUserUsername(updateApplicantDto.getUsername())
-                                  .orElseThrow(() -> new RuntimeException("Кастом эесепшен"));
+    public void updateApplicantProfileForUserWithUsername(ApplicantDto applicantDto, String username) {
+        Applicant applicant = findApplicantByUsername(username);
 
-        applicant.setProfession(updateApplicantDto.getProfession());
+        applicant.setFirstName(applicantDto.getFirstName());
+        applicant.setFirstName(applicantDto.getLastName());
+        applicant.setProfession(applicantDto.getProfession());
 
         applicantRepository.save(applicant);
     }
 
     public ApplicantDto createApplicantDtoByUsername(String username) {
-        User user = userRepository.findByUsername(username).orElse(null);
-        Applicant applicant = applicantRepository.findByUserUsername(username).orElse(null);
-        if (null == user || null == applicant) {
-            throw new RuntimeException("Кастом эесепшен");
-        }
-        return ApplicantDto.builder()
-                   .username(username)
-                   .email(user.getEmail())
-                   .firstName(applicant.getFirstName())
-                   .lastName(applicant.getLastName())
-                   .dateOfBirth(applicant.getDateOfBirth())
-                   .passportNumber(applicant.getPassportNumber())
-                   .phone(applicant.getPhone())
-                   .profession(applicant.getProfession())
-                   .build();
+        Applicant applicant = findApplicantByUsername(username);
+
+        return applicantMapper.entityToDto(applicant);
     }
 
     public boolean existsByUniqueData(ApplicantDto registrationDto, BindingResult result) {
@@ -87,8 +76,9 @@ public class UserService {
         return returnValue;
     }
 
-    public boolean existsByUsername(String username) {
-        return userRepository.existsByUsername(username);
+    private Applicant findApplicantByUsername(String username) {
+        return applicantRepository.findByUserUsername(username).orElseThrow(
+            () -> new VisalandException(BAD_REQUEST, format("User not found with username %s", username)));
     }
 
 }
