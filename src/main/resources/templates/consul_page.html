@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta charset="UTF-8">
+    <title>Consul Page</title>
+</head>
+<body>
+<div class="content">
+
+    <h2><span th:text="${consul.username}"></span></h2>
+    <p><span th:text="${consul.firstName}"></span> <span th:text="${consul.lastName}"></span></p>
+
+    <div class="buttons-container">
+        <form method="get" th:action="@{/consul/open}">
+            <button type="submit" class="button">New applications</button>
+        </form>
+        <form method="get" th:action="@{/consul/processing}">
+            <button type="submit" class="button">Processing applications</button>
+        </form>
+        <form method="get" th:action="@{/consul/resolved}">
+            <button type="submit" class="button">Resolved applications</button>
+        </form>
+    </div>
+
+    <br>
+    <a class="link" href="#" th:href="@{/logout}">Logout</a>
+</div>
+</body>
+</html>
