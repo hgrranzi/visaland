@@ -14,6 +14,8 @@ import java.time.LocalDate;
 @Setter
 public class ApplicationDto {
 
+    private Long id;
+
     private LocalDate applicationDate = LocalDate.now();
 
     private String visaCategory;

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "applicant")
@@ -41,5 +43,8 @@ public class Applicant {
 
     @Column(name = "profession")
     private String profession;
+
+    @OneToMany(mappedBy = "applicant", fetch = FetchType.LAZY)
+    private List<Application> applications = new ArrayList<>();
 
 }

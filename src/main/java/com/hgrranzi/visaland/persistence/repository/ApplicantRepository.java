@@ -13,4 +13,6 @@ public interface ApplicantRepository extends JpaRepository<Applicant, Long> {
 
     boolean existsByPassportNumber(String passportNumber);
 
+    Optional<Applicant> findByApplicationsId(Long applicationId);
+
 }

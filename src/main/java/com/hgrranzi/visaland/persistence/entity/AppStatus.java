@@ -4,5 +4,9 @@ public enum AppStatus {
     OPEN,
     PROCESSING,
     ACCEPTED,
-    REJECTED
+    REJECTED;
+
+    public boolean isFinal() {
+        return this == ACCEPTED || this == REJECTED;
+    }
 }

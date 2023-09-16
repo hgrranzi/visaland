@@ -1,6 +1,7 @@
 package com.hgrranzi.visaland.business.service;
 
 import com.hgrranzi.visaland.api.dto.ApplicantDto;
+import com.hgrranzi.visaland.api.dto.ApplicantInfoDto;
 import com.hgrranzi.visaland.api.dto.ConsulDto;
 import com.hgrranzi.visaland.business.exception.VisalandException;
 import com.hgrranzi.visaland.business.mapper.ApplicantMapper;
@@ -69,6 +70,12 @@ public class UserService {
             () -> new VisalandException(BAD_REQUEST, format("Consul not found with username %s", username)));
 
         return consulMapper.entityToDto(consul);
+    }
+
+    public ApplicantInfoDto findApplicantOfApplicationWithId(Long id) {
+        Applicant applicant = applicantRepository.findByApplicationsId(id).orElseThrow(
+            () -> new VisalandException(BAD_REQUEST, format("Applicant of application with id %d not found", id)));
+        return applicantMapper.entityToDto(applicant, id);
     }
 
     public boolean existsByUniqueData(ApplicantDto registrationDto, BindingResult result) {

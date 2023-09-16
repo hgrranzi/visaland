@@ -8,12 +8,16 @@ import com.hgrranzi.visaland.persistence.entity.VisaCategory;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface ApplicationMapper {
 
 
+    ApplicationMapper INSTANCE = Mappers.getMapper(ApplicationMapper.class);
+
     @Mappings({
+        @Mapping(source = "id", target = "id"),
         @Mapping(source = "applicationDate", target = "applicationDate"),
         @Mapping(source = "category.name", target = "visaCategory"),
         @Mapping(source = "country.name", target = "country"),
