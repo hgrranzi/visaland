@@ -1,10 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Process Application</title>
 </head>
 <body>
+<div class="content">
+    <h2>Application</h2>
+    <p>This application in now pinned to you. Please make a decision or return it back to OPEN status.</p>
+    <table>
+        <thead>
+        <tr>
+            <th>Application date</th>
+            <th>Country</th>
+            <th>Visa category</th>
+            <th>Start date</th>
+            <th>Duration</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <td th:text="${applicationDto.applicationDate}"></td>
+        <td th:text="${applicationDto.country}"></td>
+        <td th:text="${applicationDto.visaCategory}"></td>
+        <td th:text="${applicationDto.entryDate}"></td>
+        <td><span th:text="${applicationDto.durationDays}"></span> days</td>
+        <td>
+            <form method="get" th:action="@{/consul/open}">
+                <input type="hidden" th:value="${applicationDto.id}">
+                <button type="submit" class="button">Return to OPEN status</button>
+            </form>
+            <form th:action="@{/consul/process}" method="post">
+                <button type="submit" class="button">Accept</button>
+                <button type="submit" class="button">Reject</button>
+            </form>
+        </td>
+        </tbody>
+    </table>
+    <br>
+    <h2>Applicant Info</h2>
+    <ul>
+        <li>Name: <span th:text="${applicant.firstName}"></span> <span th:text="${applicant.lastName}"></span></li>
+        <li>Date of birth: <span th:text="${applicant.dateOfBirth}"></span></li>
+        <li>Passport number: <span th:text="${applicant.passportNumber}"></span></li>
+        <li>City: <span th:text="${applicant.city}"></span></li>
+        <li>Profession: <span th:text="${applicant.profession}"></span></li>
+    </ul>
+    <br>
+    <h3>Last applications</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Application date</th>
+            <th>Country</th>
+            <th>Visa category</th>
+            <th>Start date</th>
+            <th>Duration</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="app : ${applicant.lastFiveApplications}">
+            <td th:text="${app.applicationDate}"></td>
+            <td th:text="${app.country}"></td>
+            <td th:text="${app.visaCategory}"></td>
+            <td th:text="${app.entryDate}"></td>
+            <td><span th:text="${app.durationDays}"></span> days</td>
+            <td th:text="${app.status}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

@@ -16,5 +16,14 @@
             <column name="status" value="ACCEPTED"/>
             <column name="comment" value="Visa accepted"/>
         </insert>
+        <insert tableName="application">
+            <column name="applicant_id" valueNumeric="1"/>
+            <column name="category_id" valueNumeric="3"/>
+            <column name="country_id" valueNumeric="3"/>
+            <column name="application_date" valueDate="2023-09-21"/>
+            <column name="start_date" valueDate="2023-12-12"/>
+            <column name="duration_days" valueNumeric="111"/>
+            <column name="status" value="OPEN"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

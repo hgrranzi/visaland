@@ -49,18 +49,23 @@ public class ConsulController {
         return "open_applications_page";
     }
 
+    @PostMapping("/open")
+    @PreAuthorize("hasRole('CONSUL')")
+    @LogUserAction(description = "Request of returning application to open status by user")
+    public String returnToOpenApplications(Authentication authentication, Model model) {
+        //returning app
+        return "redirect:/consul/open";
+    }
+
     @PostMapping("/processing")
     @PreAuthorize("hasRole('CONSUL')")
     @LogUserAction(description = "Request of processing applications page by user")
     public String showProcessingApplicationsPage(Authentication authentication,
                                                  @RequestParam("appId") Long appId,
                                                  Model model) {
-
-
         ApplicantInfoDto applicant = userService.findApplicantOfApplicationWithId(appId);
-        System.err.println(applicant);
-
-        model.addAttribute("application", applicant.currentApp());
+        //pin app to consul
+        model.addAttribute("applicationDto", applicant.currentApp());
         model.addAttribute("applicant", applicant);
 
         return "process_application_page";
