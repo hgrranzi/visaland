@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/db
+      - ./sql/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
+    ports:
+      - 8089:5432
+
+  app:
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+    ports:
+      - "8080:8080"
+    container_name: app
+    depends_on:
+      - db
+
+volumes:
+  db-data:
