@@ -9,9 +9,9 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    volumes:
-      - db-data:/var/lib/postgresql/db
-      - ./sql/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
+#    volumes:
+#      - db-data:/var/lib/postgresql/db
+#      - ./sql/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
     ports:
       - 8089:5432
 
