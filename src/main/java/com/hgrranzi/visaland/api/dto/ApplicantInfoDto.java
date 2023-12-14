@@ -28,7 +28,7 @@ public class ApplicantInfoDto {
     public ApplicationDto currentApp() {
         return lastFiveApplications
                    .stream()
-                   .filter(a -> a.getStatus().equals(AppStatus.OPEN.name()))
+                   .filter(a -> a.getStatus().equals(AppStatus.PROCESSING.name()))
                    .findFirst()
                    .orElse(null);
     }

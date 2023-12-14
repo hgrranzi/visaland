@@ -1,13 +1,12 @@
 package com.hgrranzi.visaland.business.service;
 
+import com.hgrranzi.visaland.api.dto.ApplicantInfoDto;
 import com.hgrranzi.visaland.api.dto.ApplicationDto;
 import com.hgrranzi.visaland.business.exception.VisalandException;
+import com.hgrranzi.visaland.business.mapper.ApplicantMapper;
 import com.hgrranzi.visaland.persistence.entity.*;
 import com.hgrranzi.visaland.business.mapper.ApplicationMapper;
-import com.hgrranzi.visaland.persistence.repository.ApplicantRepository;
-import com.hgrranzi.visaland.persistence.repository.ApplicationRepository;
-import com.hgrranzi.visaland.persistence.repository.CountryRepository;
-import com.hgrranzi.visaland.persistence.repository.VisaCategoryRepository;
+import com.hgrranzi.visaland.persistence.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -31,46 +30,63 @@ public class ApplicationService {
 
     private final ApplicationMapper applicationMapper;
 
+    private final ConsulRepository consulRepository;
+
+    private final ApplicantMapper applicantMapper;
+
     public List<ApplicationDto> findAllApplicationsForApplicantWithUsername(String username) {
         List<Application> apps = applicationRepository.findAllByApplicant_User_UsernameOrderByApplicationDate(username);
         return apps.stream()
-                   .map(applicationMapper::entityToDto)
-                   .collect(Collectors.toList());
+                .map(applicationMapper::entityToDto)
+                .collect(Collectors.toList());
     }
 
     public List<ApplicationDto> findAllApplicationsWithStatus(AppStatus status) {
         List<Application> apps = applicationRepository.findAllByStatusOrderByApplicationDate(status);
         return apps.stream()
-                   .map(applicationMapper::entityToDto)
-                   .collect(Collectors.toList());
+                .map(applicationMapper::entityToDto)
+                .collect(Collectors.toList());
     }
 
     public ApplicationDto findApplicationById(Long id) {
         Application application = applicationRepository.findById(id).orElseThrow(
-            () -> new VisalandException(HttpStatus.BAD_REQUEST, format("No application with id %d found", id)));
+                () -> new VisalandException(HttpStatus.BAD_REQUEST, format("No application with id %d found", id)));
 
         return applicationMapper.entityToDto(application);
     }
 
     public void saveNewApplicationFromApplicantWithUsername(ApplicationDto applicationDto, String username) {
         Applicant applicant = applicantRepository.findByUserUsername(username).orElseThrow(
-            () -> new VisalandException(HttpStatus.BAD_REQUEST, format("User not found with username %s",
-                                                                       username)));
+                () -> new VisalandException(HttpStatus.BAD_REQUEST, format("User not found with username %s",
+                        username)));
 
         Country country = countryRepository.findByName(applicationDto.getCountry()).orElseThrow(
-            () -> new VisalandException(HttpStatus.BAD_REQUEST, format("Wrong country name %s",
-                                                                       applicationDto.getCountry())));
+                () -> new VisalandException(HttpStatus.BAD_REQUEST, format("Wrong country name %s",
+                        applicationDto.getCountry())));
 
         VisaCategory category = visaCategoryRepository.findByName(applicationDto.getVisaCategory()).orElseThrow(
-            () -> new VisalandException(HttpStatus.BAD_REQUEST, format("Wrong category name %s",
-                                                                       applicationDto.getVisaCategory())));
+                () -> new VisalandException(HttpStatus.BAD_REQUEST, format("Wrong category name %s",
+                        applicationDto.getVisaCategory())));
 
         if (applicationDto.getDurationDays() > category.getMaxDurationDays()) {
             throw new VisalandException(HttpStatus.BAD_REQUEST, format("Max duration days allowed %d",
-                                                                       category.getMaxDurationDays()));
+                    category.getMaxDurationDays()));
         }
 
         applicationRepository.save(applicationMapper.dtoToEntity(applicationDto, applicant, category, country));
+    }
+
+    public ApplicantInfoDto pinApplicationToConsul(Long appid, String consulUsername) {
+        Application application = applicationRepository.findById(appid).orElseThrow(
+                () -> new VisalandException(HttpStatus.BAD_REQUEST, format("No application with id %d found", appid)));
+        Consul consul = consulRepository.findByUserUsername(consulUsername).orElseThrow(
+                () -> new VisalandException(HttpStatus.BAD_REQUEST, format("No consul with username %s found", consulUsername))
+        );
+        application.setConsul(consul);
+        application.setStatus(AppStatus.PROCESSING);
+        applicationRepository.save(application);
+
+        return applicantMapper.entityToDto(application.getApplicant(), appid);
     }
 
 }

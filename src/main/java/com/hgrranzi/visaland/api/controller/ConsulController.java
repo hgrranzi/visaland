@@ -63,8 +63,10 @@ public class ConsulController {
     public String showProcessingApplicationsPage(Authentication authentication,
                                                  @RequestParam("appId") Long appId,
                                                  Model model) {
-        ApplicantInfoDto applicant = userService.findApplicantOfApplicationWithId(appId);
+        ApplicantInfoDto applicant = applicationService.pinApplicationToConsul(appId, authentication.getName());
+        //ApplicantInfoDto applicant = userService.findApplicantOfApplicationWithId(appId);
         //pin app to consul
+        System.err.println(applicant);
         model.addAttribute("applicationDto", applicant.currentApp());
         model.addAttribute("applicant", applicant);
 
