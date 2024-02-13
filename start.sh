@@ -6,4 +6,4 @@ docker rmi $(docker images -qa)
 docker volume rm $(docker volume ls -q)
 docker network rm $(docker network ls -q) 2>/dev/null
 
-docker-compose -f docker-compose.yaml -p module14 up -d
+docker-compose -f docker-compose.yaml -p visaland up -d
