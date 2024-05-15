@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <meta charset="UTF-8">
-    <title>Applications</title>
+    <title>Open applications</title>
 </head>
 <body>
 <div class="content">
-    <h2>My applications</h2>
+    <h2>Open applications</h2>
 
     <table>
         <thead>
@@ -16,8 +16,7 @@
             <th>Country</th>
             <th>Visa category</th>
             <th>Start date</th>
-            <th>Duration</th>
-            <th>Status</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -26,8 +25,12 @@
             <td th:text="${app.country}"></td>
             <td th:text="${app.visaCategory}"></td>
             <td th:text="${app.entryDate}"></td>
-            <td><span th:text="${app.durationDays}"></span> days</td>
-            <td th:text="${app.status}"></td>
+            <td>
+                <form th:action="@{/consul/processing}" method="post">
+                    <input type="hidden" th:name="appId" th:value="${app.id}">
+                    <button type="submit" class="button">Select</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

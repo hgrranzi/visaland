@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <meta charset="UTF-8">
     <title>Applications</title>
 </head>
 <body>
 <div class="content">
-    <h2>My visas</h2>
+    <h2>My applications</h2>
 
     <table>
         <thead>
         <tr>
+            <th>Application date</th>
             <th>Country</th>
             <th>Visa category</th>
             <th>Start date</th>
-            <th>End date</th>
+            <th>Duration</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="visa : ${visas}">
-            <td th:text="${visa.country}"></td>
-            <td th:text="${visa.category}"></td>
-            <td th:text="${visa.startDate}"></td>
-            <td th:text="${visa.endDate}"></td>
+        <tr th:each="app : ${applications}">
+            <td th:text="${app.applicationDate}"></td>
+            <td th:text="${app.country}"></td>
+            <td th:text="${app.visaCategory}"></td>
+            <td th:text="${app.entryDate}"></td>
+            <td><span th:text="${app.durationDays}"></span> days</td>
+            <td th:text="${app.status}"></td>
         </tr>
         </tbody>
     </table>
